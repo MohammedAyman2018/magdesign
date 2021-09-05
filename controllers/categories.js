@@ -15,6 +15,7 @@ exports.addCategory = async (req, res) => {
   else {
     try {
       const category = await Category.create({ name })
+      return res.status(200).json(category)
     } catch (err) {
       res.status(400).json({ message: err.message, err })
     }
