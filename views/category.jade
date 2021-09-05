@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+  head
+    include ../includes/head_content.pug
+    link(rel="stylesheet", href="/stylesheets/main.css")
+    title Category
+  body 
+    include ../includes/navbar_content.pug
+    div(class="parent mt-10")
+      div(class="container")
+        span(class="text-xs text-gray-400 font-semibold tracking-wider") CATEGORIES
+        h1(class="text-3xl font-extrabold tracking-wide") 'Business'
+        include ../includes/business_cards.pug
+        div(class="list my-10")
+          ul(class="flex mx-auto w-max")
+            each val in [1,2,3,4,5]
+              li
+                a(class="px-4 py-3 text-yellow-500 bg-yellow-100 rounded-full mx-1 font-bold hover:bg-yellow-500 hover:text-white transition duration-500 ease-in-out" ,href="#") #{val}
+    include ../includes/footer_content.pug
+
+
+    include ../includes/scripts.pug
+
+
+
+

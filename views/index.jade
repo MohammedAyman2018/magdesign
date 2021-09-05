@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+  head
+    include includes/head_content.jade
+    title Home
+  body
+    include includes/navbar_content.jade
+    include includes/slider.jade
+    include includes/main_cards.jade
+    div(class=" container lg:flex block")
+      div(class="block my-28")
+        h1(class="text-2xl font-extrabold mb-0") Sports
+        include includes/business_cards.jade
+      div(class="block my-28")
+        h1(class="text-2xl font-extrabold") Business
+        include includes/business_cards.jade
+    include includes/footer_content.jade
+    
+    
+    include includes/scripts.jade
+    
+    
+

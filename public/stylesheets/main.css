@@ -1,0 +1,135 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+* {
+  outline-style: none;
+  text-decoration: none;
+}
+
+a {
+  color: unset;
+}
+
+.container {
+  width: 85%;
+  margin: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#sidebar {
+  position: fixed;
+  top: 0px;
+  right: -300px;
+  width: 250px;
+  -webkit-transition: 1.5s;
+  transition: 1.5s;
+}
+
+#sidebar p {
+  text-align: right;
+}
+
+#sidebar p i#close_sidebar {
+  cursor: pointer;
+}
+
+#sidebar ul li {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+  color: #000;
+}
+
+#sidebar ul li:hover {
+  color: #f79918;
+}
+
+#sidebar ul li span {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#sidebar ul li span:hover {
+  color: #f79918;
+}
+
+#sidebar ul ul {
+  display: none;
+}
+
+#menu, #close_sidebar {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+#menu:hover {
+  color: #f79918;
+}
+
+#close_sidebar:hover {
+  color: #f79918;
+}
+
+.active {
+  color: #f79918 !important;
+}
+
+.parent .slider .splide .splide__arrows {
+  display: none;
+}
+
+.parent .slider .splide .splide__track {
+  width: 85%;
+  margin: auto;
+}
+
+.parent .slider .splide .splide__track .splide__list .splide__slide .son .content h2 {
+  color: #222;
+}
+
+.parent .slider .splide .splide__pagination {
+  bottom: -2em;
+}
+
+.parent .slider .splide .splide__pagination li .splide__pagination__page {
+  width: 5px;
+  height: 5px;
+}
+
+.parent .slider .splide .splide__pagination__page.is-active {
+  background: #f79918;
+}
+
+.main_cards {
+  width: 30%;
+}
+
+.main_cards .content h2 {
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+
+@media screen and (max-width: 992px) {
+  .container {
+    width: 90%;
+  }
+  .main_cards {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .main_cards {
+    width: 47%;
+  }
+}
+
+h2 {
+  color: #222;
+  font-family: "Poppins", sans-serif;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,56 @@
+//sidebar
+div(id="sidebar" class="py-2 px-3 h-full shadow-md z-10 bg-white")
+  p
+    i( id="close_sidebar" , class="ri-close-fill text-4xl transition duration-300 ease-in-out hover:text-yellow-500")
+  ul
+    li(class="py-1.5 px-3 active ")
+      a(href="../index.html") Home
+    li(class="py-1.5 px-3 relative ")
+      a(href="../pug_files/category.html ") Categories
+
+      span(id="arrow", class="absolute top-0 right-0 text-2xl text-gray-300 cursor-pointer ")
+        i(class="ri-arrow-down-circle-line ")
+      
+      ul(class="p-3 inner-list")
+        each val in ["Travel","Food","Technology","Business", "Dropdown"]
+          li(class="py-1.5 px-3 ")
+            a(href="#") #{val}
+
+    li(class="py-1.5 px-3 ")
+      a(href="#") Travel
+    li(class="py-1.5 px-3 ")
+      a(href="#") Food
+    li(class="py-1.5 px-3 ")
+      a(href="#") Technology
+    li(class="py-1.5 px-3 ")
+      a(href="#") Business
+
+//main navbar
+nav(class="border-b-2 border-gray-200")
+  div(class="container") 
+    .parent
+      div(class="md:flex py-5")
+        
+        div(class="md:w-1/2 w-full logo md:order-2 text-center ")
+          a(href="../index.html" class="text-black text-xl font-bold") MAGDESIGN 
+                
+        div(class="md:w-1/4 w-full list md:order-3")
+          div(class="flex justify-between")
+            ul(class=" flex")
+              each val in ['ri-twitter-fill','ri-facebook-fill','ri-instagram-line']
+                li(class="mx-2 ")
+                  a(href="#")
+                    span
+                      i(class=val) 
+
+            a(href="#" class="text-4xl" id="menu")
+              span
+                i(class="ri-menu-fill transition duration-300 ease-in-out hover:text-yellow-500")
+            
+        
+        div(class="md:w-1/4 w-full search md:order-1")
+          form(class="relative px-3 py-1 rounded-full border-2 border-gray-200")
+            span(class="absolute top-1.5 text-gray-300 left-2.5 text-sm")
+              <i class="ri-search-line"></i>
+            input(type="search" class=" pl-6 w-full text-gray-600" placeholder="Search..." )
+

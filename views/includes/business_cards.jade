@@ -1,0 +1,22 @@
+//Bussiness cards
+div(class="parent ")
+  each val in ["img_2", "img_3", "img_4"]
+    div(class="business_cards md:flex block my-12")
+      div(class="pic md:w-80 w-full md:mb-0 mb-6 mr-3")
+        img(class="w-full rounded-md " , src="../images/home_cards/" + val +".jpg")
+      //content
+      div(class="content")
+        div(class="top text-sm ")
+          a(href="#" , class="font-bold") Business, Travel 
+          span(class="text-gray-400") - July 2,2020
+        
+        h2(class="pr-10")
+          a(href="/article/Your most unhappy customers are your greatest source of learning" ,class="text-lg font-extrabold ") Your most unhappy customers are your greatest source of learning.
+
+        a(href="#" class="flex mt-2")
+          div(class="author-pic w-12 mr-5")
+            img(class="rounded-full" , src="../images/slider1/person_1.jpg")
+          div(class="author-info mt-2")
+            strong(class="block text-sm") Sergy Campbell
+            span(class="text-xs font-light text-gray-500") Author, 26 published post
+

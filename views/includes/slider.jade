@@ -1,0 +1,31 @@
+//slider
+div(class="parent")
+	h1(class="mt-16 text-center text-4xl font-extrabold tracking-wide ") Trending
+	div(class="slider my-20")
+		div(class="splide")
+			div(class="splide__track")
+				ul(class="splide__list")
+					each val in ["post_lg_1","post_lg_2","post_lg_3","post_lg_4"]
+						li(class="splide__slide")
+							div(class="son lg:flex")
+								div(class="pic w-full lg:w-1/3 md:mr-10 ")
+									img(class="w-full rounded-md" , src="../images/slider1/"+val+".jpg")
+								
+								//content
+								div(class="content w-full lg:w-2/3 mt-8")
+									div(class="top text-sm")
+										a(href="#" , class="font-bold") Business, Travel 
+										span(class="text-gray-400") - July 2,2020
+									
+									h2(class="mt-6 mb-3 text-4xl font-extrabold leading-sung tracking-wide")
+										a(href="/article/Your most unhappy customers are your greatest source of learning")  Your most unhappy customers are your greatest source of learning.
+									p(class="text-gray-500 mt-2 text-md leading-sung tracking-wide") Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.
+									
+									a(href="#" class="flex mt-8 ")
+										div(class="author-pic w-16 mr-5")
+											img(class="rounded-full" , src="../images/slider1/person_1.jpg")
+										div(class="author-info mt-2")
+											strong(class="block text-sm") Sergy Campbell
+											span(class="text-xs font-light text-gray-500") CEO and Founder
+
+
