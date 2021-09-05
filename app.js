@@ -8,14 +8,15 @@ require('dotenv')
 
 var indexRouter = require('./routes/index');
 var articlesRouter = require('./routes/articles');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
 // connect to db
 async function db () {
   // process.env.DB_URL
-  // mongodb://localhost:27017/learning-app
-  await mongoose.connect('mongodb://localhost:27017/attendance', {
+  // mongodb://localhost:27017/moblog
+  await mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     // useFindAndModify: false,
     // useCreateIndex: true,
@@ -36,6 +37,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(indexRouter);
 app.use('/api/articles/', articlesRouter);
+app.use('/api/categories/', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
