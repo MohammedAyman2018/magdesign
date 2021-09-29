@@ -3,7 +3,7 @@ const { cloudinary } = require('../middlewares/upload')
 
 exports.getAllArticles = async (req, res) => {
   try {
-    const articles = await Article.find({})
+    const articles = await Article.find({}).populate('category')
     return res.status(200).json(articles)
   } catch (err) {
     res.status(400).json({ message: err.message, err })
@@ -48,7 +48,6 @@ exports.addArticle = async (req, res) => {
 exports.updateArticle = async (req, res) => {
   const article = await Article.findById(req.params.id)
   if (!article) { return res.status(400).send('There is no article with this id.') }
-
   for (const key in req.body) {
     if (Object.hasOwnProperty.call(req.body, key)) {
       const element = req.body[key];

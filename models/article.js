@@ -11,11 +11,9 @@ const articleSchema = new Schema({
     required: true
   },
   category: {
-    type: [{
-      type: Schema.Types.ObjectId,
-      ref: ''
-    }],
-    default: []
+    type: Schema.Types.ObjectId,
+    ref: 'category',
+    required: true
   },
   img: {
     type: String,
@@ -28,7 +26,7 @@ exports.validate = function joi(article) {
   const schema = Joi.object({
     title: Joi.string().required(),
     body: Joi.string().required(),
-    category: Joi.array(),
+    category: Joi.string().required(),
     img: Joi.string()
   })
   return schema.validate(article)
