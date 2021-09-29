@@ -7,6 +7,7 @@ const {
   addArticle,
   updateArticle,
   changeArticleImg,
+  increaseArticleViews,
   getOneArticle,
   deleteOneArticle,
   deleteAllArticles
@@ -25,5 +26,6 @@ router
   .delete(deleteOneArticle) // => ✅
 
 router.patch('/change-img/:id', upload.single('article-img'), changeArticleImg) // => ✅
+router.patch('/views/:id', increaseArticleViews) // => ✅
 
 module.exports = router;

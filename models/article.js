@@ -18,6 +18,10 @@ const articleSchema = new Schema({
   img: {
     type: String,
     required: true
+  },
+  views: {
+    type: Number,
+    default: 0
   }
 },
   { timestamps: true })

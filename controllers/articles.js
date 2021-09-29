@@ -103,3 +103,16 @@ exports.getOneArticle = async (req, res) => {
     res.status(500).json({ message: err.message, err })
   }
 }
+
+
+exports.increaseArticleViews = async (req, res) => {
+  try {
+    const article = await Article.findById(req.params.id)
+    article.views++
+    await article.save()
+
+    res.status(200).json(article)
+  } catch (err) {
+    res.status(500).json({ message: err.message, err })
+  }
+}
