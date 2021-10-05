@@ -5,19 +5,18 @@ html(lang="en")
     title Home
   body
     include includes/navbar_content.jade
-    include includes/slider.jade
-    include includes/main_cards.jade
-    div(class=" container lg:flex block")
-      div(class="block my-28")
-        h1(class="text-2xl font-extrabold mb-0") Sports
-        include includes/business_cards.jade
-      div(class="block my-28")
-        h1(class="text-2xl font-extrabold") Business
-        include includes/business_cards.jade
+    //- include includes/slider.jade
+    //- h1(class="mt-16 text-center text-2xl font-extrabold tracking-wide ") Leatest Articles
+    //- div#mainCards(class="container md:flex flex-wrap justify-between")
+
+    //- h1(class="mt-16 text-center text-2xl font-extrabold tracking-wide ") Categories
+    div#categoryCrds(class="container lg:flex block")
     include includes/footer_content.jade
     
     
-    include includes/scripts.jade
-    
+    //- include includes/scripts.jade
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    script(src="/javascripts/index.js") 
+
     
 

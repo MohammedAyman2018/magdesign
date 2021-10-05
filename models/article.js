@@ -10,6 +10,11 @@ const articleSchema = new Schema({
     type: String,
     required: true
   },
+  desc: {
+    type: String,
+    maxlength: 255,
+    required: true
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'category',
@@ -29,6 +34,7 @@ const articleSchema = new Schema({
 exports.validate = function joi(article) {
   const schema = Joi.object({
     title: Joi.string().required(),
+    desc: Joi.string().max(255).required(),
     body: Joi.string().required(),
     category: Joi.string().required(),
     img: Joi.string()

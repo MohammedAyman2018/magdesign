@@ -8,6 +8,7 @@ const {
   updateArticle,
   changeArticleImg,
   increaseArticleViews,
+  getArticlesForIndexPage,
   getOneArticle,
   deleteOneArticle,
   deleteAllArticles
@@ -27,5 +28,5 @@ router
 
 router.patch('/change-img/:id', upload.single('article-img'), changeArticleImg) // => ✅
 router.patch('/views/:id', increaseArticleViews) // => ✅
-
+router.get('/index/all', getArticlesForIndexPage)
 module.exports = router;

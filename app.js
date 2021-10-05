@@ -17,7 +17,7 @@ var app = express();
 async function db () {
   // process.env.DB_URL
   // mongodb://localhost:27017/moblog
-  await mongoose.connect(process.env.DB_URL, {
+  await mongoose.connect('mongodb://localhost:27017/moblog', {
     useNewUrlParser: true,
     // useFindAndModify: false,
     // useCreateIndex: true,
@@ -40,6 +40,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(indexRouter);
 app.use('/api/articles/', articlesRouter);
 app.use('/api/categories/', categoriesRouter);
+
+app.post('/auth', (req, res) => {
+  console.log(req.body)
+  if (
+    req.body.name === process.env.AUTH_NAME
+    && req.body.password === process.env.AUTH_PASSWORD
+  ) {
+    return res.status(200).json('working')
+  } else {
+    return res.status(400).json('INVALID')
+  }
+})
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

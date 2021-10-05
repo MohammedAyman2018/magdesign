@@ -11,6 +11,10 @@ router.get('/article/:title', function(req, res, next) {
 });
 
 // Admin Routes
+router.get('/admin/login', function (req, res, next) {
+  res.render('admin/login.jade')
+})
+
 router.get('/admin/articles', function (req, res, next) {
   res.render('admin/articles/index.jade')
 })

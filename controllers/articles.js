@@ -1,4 +1,5 @@
 const { Article, validate } = require("../models/article")
+const { Category } = require("../models/category")
 const { cloudinary } = require('../middlewares/upload')
 
 exports.getAllArticles = async (req, res) => {
@@ -114,5 +115,21 @@ exports.increaseArticleViews = async (req, res) => {
     res.status(200).json(article)
   } catch (err) {
     res.status(500).json({ message: err.message, err })
+  }
+}
+
+exports.getArticlesForIndexPage = async (req, res) => {
+  try {
+    const articles = await Article.find({}).sort({ createdAt: 1 }).populate('category')
+    
+    const articlesToShow = {
+      leatest: articles.slice(0, 5),
+      articles: articles.length > 5 ? articles.slice(5) : articles,
+      categories: await Category.find()
+    }
+  
+    res.status(200).json(articlesToShow)
+  } catch (err) {
+    res.staus(500).json(err)
   }
 }

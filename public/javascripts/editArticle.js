@@ -45,6 +45,7 @@ async function addArticle() {
   
   const formData = {
     title: document.getElementById('title').value,
+    desc: document.getElementById('desc').value,
     body: quill.root.innerHTML,
     category: document.getElementById('categories').selectedOptions[0].value
   }
@@ -78,6 +79,7 @@ async function addArticle() {
 function validate (article) {
   const allExisting = !(
     !article.get('title') ||
+    !article.get('desc') ||
     !article.get('category') ||
     !article.get('body')
   )
@@ -100,6 +102,8 @@ async function getArticle () {
   quill.root.innerHTML = article.data.body
   const titleInput = document.getElementById('title')
   const categoriesInput = document.getElementById('categories')
+  const descInput = document.getElementById('desc')
+  descInput.value = article.data.desc;
   titleInput.value = article.data.title;
   const opt = [...categoriesInput.options].find(x => x.value === article.data.category)
   if (opt) { opt.selected = true }
