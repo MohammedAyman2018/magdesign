@@ -53,7 +53,7 @@ function createNewRow (article) {
   const editIcon = document.createElement('i')
   editIcon.classList.add("ri-edit-line", "text-yellow-800", "cursor-pointer")
   const editLink = document.createElement('a')
-  editLink.href = `/admin/articles/edit/${article._id}`
+  editLink.href = `/admin/articles/edit/${article.title}`
   editLink.appendChild(editIcon)
   
   deleteIcon.addEventListener('click', deleteArticle)
@@ -81,9 +81,13 @@ function createNewRow (article) {
 async function addArticle() {
   const name = prompt('Enter new article text...')
   if (name) {
-    const res = await axios.post('/api/articles/', { name }).catch(err => alert(err))
-    const tr = createNewRow(res.data)
-    articleTable.appendChild(tr)
+    try {
+      const res = await axios.post('/api/articles/', { name }).catch(err => alert(err))
+      const tr = createNewRow(res.data)
+      articleTable.appendChild(tr)
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 
@@ -92,8 +96,12 @@ async function deleteArticle(e) {
   if (youSure) {
     const _id = e.target.getAttribute('data-article')
     const tr = e.target.parentElement.parentElement
-    console.log(tr)
-    const res = await axios.delete(`/api/articles/${_id}`).catch(err => alert(err))
+    
+    try {
+      await axios.delete(`/api/articles/${_id}`).catch(err => alert(err))
+    } catch (error) {
+      alert(error)
+    }
     tr.remove()
   }
 }
@@ -104,11 +112,15 @@ function closeModal () {
 
 async function updateImage (e) {
   const formData = new FormData(updateImageForm)
-  const res = await axios.patch(`/api/articles/change-img/${editImageModal.getAttribute('data-article')}`, formData)
-  updateImageForm.reset()
-  editImageModal.removeAttribute('data-article')
-  editImageModal.classList.add('hidden')
-  alert('Article Image updated successfully')
+  try {
+    await axios.patch(`/api/articles/change-img/${editImageModal.getAttribute('data-article')}`, formData)
+    updateImageForm.reset()
+    editImageModal.removeAttribute('data-article')
+    editImageModal.classList.add('hidden')
+    alert('Article Image updated successfully')
+  } catch (error) {
+    alert(error)
+  }
 }
 
 function updateArticleImage(e) {

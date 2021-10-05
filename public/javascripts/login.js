@@ -8,7 +8,7 @@ btn.addEventListener('click', async function () {
     password: password.value
   }
   try {
-    const res = await axios.post('/auth', user)
+    await axios.post('/auth', user)
     localStorage.setItem('wina', JSON.stringify(user))
     location.href = '/admin/articles'
   } catch (error) {

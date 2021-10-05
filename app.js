@@ -42,7 +42,6 @@ app.use('/api/articles/', articlesRouter);
 app.use('/api/categories/', categoriesRouter);
 
 app.post('/auth', (req, res) => {
-  console.log(req.body)
   if (
     req.body.name === process.env.AUTH_NAME
     && req.body.password === process.env.AUTH_PASSWORD

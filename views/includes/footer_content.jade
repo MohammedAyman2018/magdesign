@@ -2,6 +2,6 @@
 footer
   div(class="container pb-10")
     div(class="social w-max mx-auto")
-      each val in ["ri-facebook-fill", "ri-twitter-fill", "ri-linkedin-fill"]
-        a(href="#" ,class="p-3 bg-gray-300 m-2 rounded-lg text-xl hover:text-white hover:bg-yellow-500 transition duration-500 ease-in-out")
-          i(class=val)
+      each val in [{link: 'https://twitter.com/winss02', icon: 'ri-twitter-fill'}]
+        a(href=val.link, target="_blank",class="p-3 bg-gray-300 m-2 rounded-lg text-xl hover:text-white hover:bg-yellow-500 transition duration-500 ease-in-out")
+          i(class=val.icon)

@@ -12,7 +12,7 @@ exports.getAllArticles = async (req, res) => {
 }
 
 exports.addArticle = async (req, res) => {
-  const { title, body, category } = req.body
+  const { title, body, category, desc } = req.body
 
   try {
     let article = await Article.findOne({ title: req.body.title })
@@ -25,7 +25,7 @@ exports.addArticle = async (req, res) => {
     if (error) { return res.status(400).json({ message: `There is something wrong: ${error.details[0].message}`, error }) }
 
 
-    article = { title, body, category }
+    article = { title, body, desc, category }
 
     await cloudinary.uploader.upload(req.file.path,
       { resource_type: 'auto', folder: 'mo-blog' },
@@ -97,9 +97,10 @@ exports.deleteOneArticle = async (req, res) => {
 
 exports.getOneArticle = async (req, res) => {
   try {
-    const article = await Article.findById(req.params.id)
-
-    res.status(200).json(article)
+    const article = await Article.findOne({ title: req.params.id }).select({ _id: 0, __v: 0, updatedAt: 0, views: 0 })
+    
+    const sameCategories = await Article.find({ category: article.category, title: { $ne: article.title } }).select({ _id: 0, __v: 0, updatedAt: 0, views: 0, body: 0 })
+    res.status(200).json({ article, sameCategories })
   } catch (err) {
     res.status(500).json({ message: err.message, err })
   }

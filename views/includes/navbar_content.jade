@@ -31,17 +31,17 @@ nav(class="border-b-2 border-gray-200")
     .parent
       div(class="md:flex py-5")
         
-        div(class="md:w-1/2 w-full logo md:order-2 text-center md:text-start")
+        div(class="md:w-1/2 w-full logo md:order-2 text-center md:text-left")
           a(href="/" class="text-black text-xl font-bold") Wina Pturi 
                 
         div(class="md:w-1/2 w-full list md:order-3")
           div(class="flex justify-center md:justify-end")
             ul(class=" flex")
-              each val in ['ri-twitter-fill','ri-facebook-fill','ri-instagram-line']
+              each val in [{link: 'https://twitter.com/winss02', icon: 'ri-twitter-fill'}]
                 li(class="mx-2 ")
-                  a(href="#")
+                  a(href=val.link, target="_blank")
                     span
-                      i(class=val) 
+                      i(class=val.icon) 
 
             //- a(href="#" class="text-4xl" id="menu")
             //-   span

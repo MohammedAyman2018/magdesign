@@ -64,11 +64,14 @@ async function addArticle() {
   } else {
     const url = window.location.href.split('/')
     const _id = url[url.length-1]
-    console.log(formData)
-    const res = await axios.patch(`/api/articles/${_id}`, formData).catch(err => alert(err))
-    form.reset()
-    quill.root.innerHTML = ''
-    alert('Article Edited successfully!')
+    try {
+      await axios.patch(`/api/articles/${_id}`, formData).catch(err => alert(err))
+      form.reset()
+      quill.root.innerHTML = ''
+      alert('Article Edited successfully!')
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 
@@ -98,14 +101,20 @@ async function getArticle () {
   const url = window.location.href.split('/')
   const _id = url[url.length-1]
   const article = await axios.get(`/api/articles/${_id}`).catch(err => alert(err))
-
-  quill.root.innerHTML = article.data.body
+  const { 
+    body,
+    desc,
+    title,
+    category
+   } = article.data.article
+   
+  quill.root.innerHTML = body
   const titleInput = document.getElementById('title')
   const categoriesInput = document.getElementById('categories')
   const descInput = document.getElementById('desc')
-  descInput.value = article.data.desc;
-  titleInput.value = article.data.title;
-  const opt = [...categoriesInput.options].find(x => x.value === article.data.category)
+  descInput.value = desc;
+  titleInput.value = title;
+  const opt = [...categoriesInput.options].find(x => x.value === category)
   if (opt) { opt.selected = true }
 }
 

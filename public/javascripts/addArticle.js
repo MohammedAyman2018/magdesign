@@ -51,10 +51,14 @@ async function addArticle() {
   if (!valid.valid) {
     alert(valid.msg)
   } else {
-    const res = await axios.post('/api/articles/', formData).catch(err => alert(err))
-    form.reset()
-    quill.root.innerHTML = ''
-    alert('Article Added successfully!')
+    try {
+      await axios.post('/api/articles/', formData).catch(err => alert(err))
+      form.reset()
+      quill.root.innerHTML = ''
+      alert('Article Added successfully!')
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 

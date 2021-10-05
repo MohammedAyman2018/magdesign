@@ -62,9 +62,13 @@ function createNewRow (cate) {
 async function addCategory() {
   const name = prompt('Enter new category text...')
   if (name) {
-    const res = await axios.post('/api/categories/', { name }).catch(err => alert(err))
-    const tr = createNewRow(res.data)
-    cateTable.appendChild(tr)
+    try {
+      const res = await axios.post('/api/categories/', { name }).catch(err => alert(err))
+      const tr = createNewRow(res.data)
+      cateTable.appendChild(tr)
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 
@@ -73,9 +77,12 @@ async function deleteCategory(e) {
   if (youSure) {
     const _id = e.target.getAttribute('data-category')
     const tr = e.target.parentElement.parentElement
-    console.log(tr)
-    const res = await axios.delete(`/api/categories/${_id}`).catch(err => alert(err))
-    tr.remove()
+    try {
+      await axios.delete(`/api/categories/${_id}`).catch(err => alert(err))
+      tr.remove()
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 
@@ -84,9 +91,12 @@ async function editCategory(e) {
   if (name) {
     const _id = e.target.getAttribute('data-category')
     const tr = e.target.parentElement.previousElementSibling.previousElementSibling
-    console.log(tr)
-    const res = await axios.patch(`/api/categories/${_id}`, { name }).catch(err => alert(err))
-    tr.innerText = name
+    try {
+      await axios.patch(`/api/categories/${_id}`, { name }).catch(err => alert(err))
+      tr.innerText = name
+    } catch (error) {
+      alert(error)
+    }
   }
 }
 

@@ -6,7 +6,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/article/:title', function(req, res, next) {
-  console.log(req.params.title)
   res.render('related.jade');
 });
 

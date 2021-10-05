@@ -2,8 +2,7 @@ async function admin () {
   const wina = localStorage.getItem('wina')
   if (wina) {
     try {
-      const res = await axios.post('/auth/', JSON.parse(wina))
-      console.log(res)
+      await axios.post('/auth/', JSON.parse(wina))
     } catch (error) {
       location.href = '/'
     }

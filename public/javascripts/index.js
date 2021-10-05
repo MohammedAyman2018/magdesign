@@ -2,18 +2,19 @@ const mainCardSection = document.getElementById('mainCards')
 const categoryCardSection = document.getElementById('categoryCrds')
 
 async function getPageData () {
-  const res =await axios.get('/api/articles/index/all')
-  const latestArticles = res.data.leatest
-  const articles = res.data.articles
-  const categories = res.data.categories 
-  // mainCardSection.innerHTML = generateMainCards(articles)
-  categories.forEach(category => {
-    const myArticles = articles.filter(article => article.category.name === category.name)
-    if (myArticles.length > 0) {
-      categoryCardSection.innerHTML += generateCategoryColumn(category, myArticles)
-    }
-  });
-  console.log(res)
+  try {
+    const res =await axios.get('/api/articles/index/all')
+    const articles = res.data.articles
+    const categories = res.data.categories 
+    categories.forEach(category => {
+      const myArticles = articles.filter(article => article.category.name === category.name)
+      if (myArticles.length > 0) {
+        categoryCardSection.innerHTML += generateCategoryColumn(category, myArticles)
+      }
+    });
+  } catch (error) {
+    alert(error)
+  }
 }
 
 function generateMainCards (articlesArr) {
@@ -38,26 +39,37 @@ function generateMainCards (articlesArr) {
 
 function generateCategoryColumn (category, articlesArr) {
   let col = `
-  <div class="block my-28">
+  <div class="block px-8 my-28">
   <h1 class="text-2xl font-extrabold mb-0">${category.name}</h1>
   <div class="parent">
   `
   articlesArr.forEach(article => {
     const card = `
-      <div class="business_cards md:flex block my-12">
-      <div class="pic md:w-80 w-full md:mb-0 mb-6 mr-3"><img class="w-full rounded-md " src="${article.img}"/></div>
-      <!--content-->
-      <div class="content">
-        <div class="top text-sm "><a class="font-bold" href="#">${article.category.name} </a><span class="text-gray-400">- ${article.createdAt.substr(0,10)}</span></div>
-        <h2 class="pr-10"><a class="text-lg font-extrabold " href="/article/${article.title}">${article.title}</a></h2><a class="flex mt-2" href="#">
-          <div class="author-pic w-12 mr-5"><img class="rounded-full" src="../images/slider1/person_1.jpg"/></div>
-          <div class="author-info mt-2"><strong class="block text-sm">Wina Putri</strong>
-      </div>
-      </div>
+    <div class="business_cards md:flex block my-12">
+        <div class="pic md:w-80 w-full md:mb-0 mb-6 mr-3"><img class="w-full rounded-md " src="${article.img}" />
+        </div>
+        <!--content-->
+        <div class="content">
+            <div>
+                <div class="top text-sm "><a class="font-bold" href="#">${article.category.name} </a>
+                    <span class="text-gray-400">- ${article.createdAt.substr(0,10)}</span>
+                </div>
+                <h2 class="pr-10"><a class="text-lg font-extrabold "
+                        href="/article/${article.title}">${article.title}</a></h2>
+                <p>${article.desc}</p>
+            </div>
+            <div>
+                <div class="author-pic w-12 mr-5"><img class="rounded-full" src="../images/slider1/person_1.jpg" />
+                </div>
+                <div class="author-info mt-2"><strong class="block text-sm">Wina Putri</strong>
+                </div>
+            </div>
+        </div>
+    </div>
     `
     col += card
   });
-  col += '</div></div>'
+  col += '</div>'
   return col
 }
 
